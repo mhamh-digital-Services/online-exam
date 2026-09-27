@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>اختبار كفايات لغوية 1-1</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- الشعار -->
+    <header class="site-header">
+        <div class="logo">
+            <div class="logo-icon">✓</div>
+            <span>اختبار إلكتروني</span>
+        </div>
+    </header>
+
+
+    <!-- =========================
+         صفحة البداية
+    ========================== -->
+
+    <main id="startPage" class="page">
+
+        <section class="card start-card">
+
+            <div class="exam-label">
+                اختبار كفايات لغوية 1-1
+            </div>
+
+            <h1>
+                الفترة الأولى لعام 1448هـ
+            </h1>
+
+            <p class="subtitle">
+                الفصل الدراسي الأول
+            </p>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <span>عدد الأسئلة</span>
+                    <strong>20 سؤال</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>نوع الاختبار</span>
+                    <strong>إلكتروني</strong>
+                </div>
+
+            </div>
+
+
+            <h2 class="section-title">
+                بيانات الطالبة
+            </h2>
+
+            <div class="input-group">
+                <label for="studentName">
+                    اسم الطالبة
+                </label>
+
+                <input
+                    type="text"
+                    id="studentName"
+                    placeholder="اكتبي اسم الطالبة"
+                    autocomplete="off"
+                >
+            </div>
+
+
+            <div class="input-group">
+                <label for="studentClass">
+                    الفصل
+                </label>
+
+                <input
+                    type="text"
+                    id="studentClass"
+                    placeholder="مثال: 1/1"
+                    autocomplete="off"
+                >
+            </div>
+
+
+            <div class="instructions">
+
+                <h3>⚠️ تعليمات الاختبار</h3>
+
+                <ul>
+                    <li>تأكدي من اتصال الإنترنت قبل بدء الاختبار.</li>
+                    <li>اختاري إجابة واحدة لكل سؤال.</li>
+                    <li>راجعي إجابتك قبل التسليم.</li>
+                    <li>بعد التسليم سيتم إرسال النتيجة للمعلمة.</li>
+                </ul>
+
+            </div>
+
+
+            <button id="startExam" class="main-button">
+                بدء الاختبار
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         صفحة الأسئلة
+    ========================== -->
+
+    <main id="quizPage" class="page hidden">
+
+        <section class="card quiz-card">
+
+            <div class="quiz-header">
+
+                <div>
+                    <div class="exam-label small">
+                        اختبار كفايات لغوية 1-1
+                    </div>
+
+                    <h2 id="questionTitle">
+                        السؤال 1
+                    </h2>
+                </div>
+
+                <div
+                    id="questionCounter"
+                    class="question-counter"
+                >
+                    السؤال 1 من 20
+                </div>
+
+            </div>
+
+
+            <div id="questionContainer"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         صفحة المراجعة
+    ========================== -->
+
+    <main id="submitPage" class="page hidden">
+
+        <section class="card submit-card">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h1>
+                مراجعة الاختبار
+            </h1>
+
+            <p>
+                تأكدي من إجاباتك قبل التسليم.
+            </p>
+
+            <div class="review-box">
+
+                <span>
+                    عدد الأسئلة المجاب عنها
+                </span>
+
+                <strong id="finalAnswered">
+                    0 / 20
+                </strong>
+
+            </div>
+
+            <div class="button-row">
+
+                <button
+                    id="backBtn"
+                    class="secondary-button"
+                    type="button"
+                >
+                    الرجوع
+                </button>
+
+                <button
+                    id="confirmSubmit"
+                    class="main-button"
+                    type="button"
+                >
+                    تسليم الاختبار
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         صفحة النتيجة
+    ========================== -->
+
+    <main id="resultPage" class="page hidden">
+
+        <section class="card result-card">
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+            <h1>
+                تم تسليم الاختبار
+            </h1>
+
+            <p id="resultMessage">
+                تم تسجيل الاختبار بنجاح.
+            </p>
+
+
+            <div class="score-box">
+
+                <span>
+                    الدرجة
+                </span>
+
+                <strong id="resultScore">
+                    —
+                </strong>
+
+            </div>
+
+
+            <p class="result-note">
+                سيتم إرسال نتيجة الاختبار إلى المعلمة.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
