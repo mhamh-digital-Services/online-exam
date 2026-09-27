@@ -754,7 +754,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             ? "لم تتم الإجابة"
                             : question.options[
                                 studentAnswerIndex
-                              ];
+                            ];
 
 
                     const correctAnswer =
@@ -802,16 +802,23 @@ ${question.text}
         return new Promise(
             function (resolve, reject) {
 
+                // إذا كان EmailJS محمّل مسبقًا
                 if (window.emailjs) {
 
                     try {
 
                         window.emailjs.init({
-                            publicKey:
-                                EMAILJS_PUBLIC_KEY
+                            publicKey: EMAILJS_PUBLIC_KEY
                         });
 
-                    } catch (error) {}
+                    } catch (error) {
+
+                        console.error(
+                            "خطأ في تهيئة EmailJS:",
+                            error
+                        );
+
+                    }
 
                     resolve();
 
@@ -819,6 +826,7 @@ ${question.text}
                 }
 
 
+                // تحميل مكتبة EmailJS
                 const script =
                     document.createElement(
                         "script"
@@ -842,6 +850,11 @@ ${question.text}
                             resolve();
 
                         } catch (error) {
+
+                            console.error(
+                                "خطأ في تهيئة EmailJS:",
+                                error
+                            );
 
                             reject(error);
 
@@ -876,13 +889,13 @@ ${question.text}
     // إرسال الاختبار للمعلمة
     // =====================================================
 
-    async function sendEmailToTeacher(
-        score
-    ) {
+    async function sendEmailToTeacher(score) {
 
+        // تحميل وتهيئة EmailJS
         await loadEmailJS();
 
 
+        // البيانات التي سترسل للقالب
         const templateParams = {
 
             student_name:
@@ -900,15 +913,28 @@ ${question.text}
         };
 
 
-        return window.emailjs.send(
-
-            EMAILJS_SERVICE_ID,
-
-            EMAILJS_TEMPLATE_ID,
-
+        console.log(
+            "إرسال نتيجة الاختبار:",
             templateParams
-
         );
+
+
+        // إرسال البيانات إلى EmailJS
+        const response =
+            await window.emailjs.send(
+                EMAILJS_SERVICE_ID,
+                EMAILJS_TEMPLATE_ID,
+                templateParams
+            );
+
+
+        console.log(
+            "تم إرسال النتيجة بنجاح:",
+            response
+        );
+
+
+        return response;
 
     }
 
@@ -952,10 +978,12 @@ ${question.text}
                 }
 
 
+                // حساب الدرجة
                 const score =
                     calculateScore();
 
 
+                // عرض الدرجة
                 if (resultScore) {
 
                     resultScore.textContent =
@@ -966,6 +994,7 @@ ${question.text}
                 }
 
 
+                // رسالة مؤقتة
                 if (resultMessage) {
 
                     resultMessage.textContent =
@@ -974,9 +1003,11 @@ ${question.text}
                 }
 
 
+                // الانتقال لصفحة النتيجة
                 showPage(resultPage);
 
 
+                // إرسال النتيجة
                 try {
 
                     await sendEmailToTeacher(
@@ -1009,7 +1040,7 @@ ${question.text}
 
 
                     alert(
-                        "تعذر إرسال الاختبار للمعلمة. تأكدي من اتصال الإنترنت وإعدادات EmailJS."
+                        "تعذر إرسال الاختبار للمعلمة. تأكدي من إعدادات EmailJS."
                     );
 
                 }
