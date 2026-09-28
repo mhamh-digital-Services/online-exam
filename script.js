@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // =====================================================
 
     const EMAILJS_PUBLIC_KEY = "8z8mqi6tMrEhcZOhf";
-    const EMAILJS_SERVICE_ID = "default_service";
+    const EMAILJS_SERVICE_ID = "service_gvhjwdx";
     const EMAILJS_TEMPLATE_ID = "template_ddlwkx9";
 
 
@@ -1040,8 +1040,11 @@ ${question.text}
 
 
                     alert(
-                        "تعذر إرسال الاختبار للمعلمة. تأكدي من إعدادات EmailJS."
-                    );
+    "وصلنا لخطأ في إرسال EmailJS:\n\n" +
+    (error?.text || "لا توجد رسالة من EmailJS") +
+    "\n\nStatus: " +
+    (error?.status || "غير معروف")
+);
 
                 }
 
